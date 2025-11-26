@@ -1,0 +1,41 @@
+{% load static %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1">
+            {% if object_list %}
+                {% for record in object_list %}
+                <div class="col">
+                    <div>
+                        <hr>
+                        <a href="{% url 'schedule:schedule_detail' record.pk %}">
+                            <p class="card-text">{{ record.title }}</p>
+                            <p class="card-text">{{ record.start_date }} ～ {{ record.end_date }}</p>
+                        </a>
+                        <div>
+                            {%  if record.location_at %}
+                                <p>場所： {{ record.location_at | truncatechars:15 }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            {% if record.category %}
+                            <div class="btn-group">
+                                {% for tags in record.category.all %}
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url "schedule:schedule_cat" category=tags.id  %}'">{{ tags.title }}</button>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col">
+                    <div>
+                        <h4>スケジュールがありません</h4>
+                        <p><a href="{% url 'schedule:post_schedule' %}">スケジュールを追加</a></p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

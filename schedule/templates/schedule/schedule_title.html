@@ -1,0 +1,23 @@
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">スケジュール</h1>
+        <p class="lead text-muted"></p>
+        <p>
+          {% if user.is_authenticated %}
+            <a href="{% url 'schedule:post_schedule' %}" class="btn btn-primary my-2">スケジュール追加</a>
+            <a href="{% url 'schedule:calendar_index' %}" class="btn btn-primary my-2">カレンダー表示</a>
+          {% endif %}
+        </p>
+          {% if messages %}
+            <ul class="list-unstyled" style="list-style: none;">
+              {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                  {{ message }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+      </div>
+    </div>
+  </section>

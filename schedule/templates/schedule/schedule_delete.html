@@ -1,0 +1,22 @@
+{% extends 'schedule/base.html' %}
+{% block title %}Schedule Delete{% endblock %}
+
+    {% block contents %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-3">
+                <h2>スケジュールの削除</h2>
+                <form method="POST">
+                    <br>
+                    <p>削除してもよろしいですか？</p>
+                    {% csrf_token %}
+                    <div class="button-container">
+                        <button class="btn btn-primary my-2" type="submit">削除</button>
+                        <button class="btn btn-secondary my-2" type="button" onclick="location.href='{% url "schedule:schedule_detail" object.pk %}'">キャンセル</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

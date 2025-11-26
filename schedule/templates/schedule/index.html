@@ -1,0 +1,12 @@
+{% extends 'schedule/base.html' %}
+{% block title %}Schedule{% endblock %}
+
+    {% block contents %}
+
+    {% include "schedule/schedule_title.html" %}
+
+    {% include "schedule/schedule_list.html" %}
+
+    {% include "schedule/pagination.html" %}
+
+    {% endblock %}

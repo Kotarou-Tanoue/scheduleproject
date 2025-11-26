@@ -1,0 +1,39 @@
+{% extends 'schedule/base.html' %}
+{% block title %}Schedule Detail{% endblock %}
+
+    {% block contents %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-3">
+                <h2>{{ object.title }}</h2>
+                <p>{{ object.start_date }} ～ {{ object.end_date }}</p>
+                <hr>
+                {% if object.location_at %}
+                    <h6>場所</h6>
+                    <p>{{ object.location_at }}</p>
+                    <hr>
+                {% endif %}
+                {% if object.comment %}
+                    <h6>コメント</h6>
+                    <p>{{ object.comment }}</p>
+                    <hr>
+                {% endif %}
+                {% if object.category %}
+                    <div class="btn-group">
+                        {% for tags in object.category.all %}
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url "schedule:schedule_cat" category=tags.id  %}'">{{ tags.title }}</button>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <br>
+                <small class="text-muted">{{ object.posted_at }}に追加</small>
+                <div class="button-container">
+                    <button type="button" class="btn btn-primary my-2" onclick="location.href='{% url "schedule:schedule_update" object.pk %}'">編集</button>
+                    <button type="button" class="btn btn-primary my-2" onclick="location.href='{% url "schedule:schedule_delete" object.pk %}'">削除</button>
+                    <button type="button" class="btn btn-secondary my-2" onclick="location.href='{% url "schedule:index" %}'">戻る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

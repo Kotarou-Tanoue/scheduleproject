@@ -1,0 +1,50 @@
+{% extends 'schedule/base.html' %}
+{% load static %}
+{% block title %}Schedule - Calendar{% endblock %}
+
+    {% block contents %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.1.0/main.min.js"></script>
+    <script src="{% static 'schedule/js/app.js' %}"></script>
+
+    <style>
+        #calendar {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        #calendar td.fc-day-today {
+            background-color: #fffACD;
+        }
+
+        #calendar td.holiday {
+            background-color: #FFE4E1;
+        }
+
+        #calendar th.fc-day-sat .fc-col-header-cell-cushion {
+            color: blue;
+        }
+
+        #calendar td.fc-day-sat .fc-daygrid-day-number {
+            color: blue;
+        }
+
+        #calendar th.fc-day-sun .fc-col-header-cell-cushion {
+            color: red;
+        }
+
+        #calendar td.fc-day-sun .fc-daygrid-day-number {
+            color: red;
+        }
+    </style>
+
+    <br>
+    <div id="calendar">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

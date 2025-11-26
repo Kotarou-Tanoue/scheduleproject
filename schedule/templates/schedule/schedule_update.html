@@ -1,0 +1,76 @@
+{% extends 'schedule/base.html' %}
+{% block title %}Schedule Update{% endblock %}
+
+    {% block contents %}
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="my-5">
+                    <h2>スケジュールの編集</h2>
+                    {% if messages %}
+                        <ul class="list-unstyled" style="list-style: none;">
+                            {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                    {{ message }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-floating">
+                            <div class="form-group floating-label-form-group controls">
+                                {{ form.title.label_tag }} ※必須
+                                {{ form.title }}
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <div class="form-group floating-label-form-group controls">
+                                {{ form.start_date.label_tag }}
+                                {{ form.start_date }}
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <div class="form-group floating-label-form-group controls">
+                                {{ form.end_date.label_tag }}
+                                {{ form.end_date }}
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <div class="form-group floating-label-form-group controls">
+                                {{ form.category.label_tag }}（複数選択可）
+                                <br>
+                                {% for choice in form.category %}
+                                    {{ choice }}
+                                {% endfor %}
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <div class="form-group floating-label-form-group controls">
+                                {{ form.location_at.label_tag }}
+                                {{ form.location_at }}
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <div class="form-group floating-label-form-group controls">
+                                {{ form.comment.label_tag }}
+                                {{ form.comment }}
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="button-container">
+                            <button type="submit" class="btn btn-primary my-2" id="sendMessageButton">送信</button>
+                            <button class="btn btn-secondary my-2" type="button" onclick="location.href='{% url "schedule:index" %}'">戻る</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
