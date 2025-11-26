@@ -1,6 +1,7 @@
 from datetime import date
 import json
 import time
+import datetime
 from django.shortcuts import render
 from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView, DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -157,7 +158,7 @@ def get_events(request):
             {
                 "title": event.title,
                 "start": event.start_date,
-                "end": event.end_date,
+                "end": event.end_date + datetime.timedelta(days=1),
             }
         )
 
